@@ -2,7 +2,7 @@ library motiontabbar;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'TabItem.dart';
+import 'motion-tab-item.dart';
 
 typedef MotionTabBuilder = Widget Function();
 
@@ -48,7 +48,7 @@ class _MotionTabBarState extends State<MotionTabBar> with TickerProviderStateMix
   late Animation<double> _positionAnimation;
 
   late AnimationController _fadeOutController;
-  // late Animation<double> _fadeFabOutAnimation;
+  late Animation<double> _fadeFabOutAnimation;
   late Animation<double> _fadeFabInAnimation;
 
   late List<String?> labels;
@@ -105,29 +105,32 @@ class _MotionTabBarState extends State<MotionTabBar> with TickerProviderStateMix
         setState(() {});
       });
 
-    // _fadeFabOutAnimation =
-    //     Tween<double>(begin: 1, end: 0).animate(CurvedAnimation(parent: _fadeOutController, curve: Curves.easeOut))
-    //       ..addListener(() {
-    //         setState(() {
-    //           fabIconAlpha = _fadeFabOutAnimation.value;
-    //         });
-    //       })
-    //       ..addStatusListener((AnimationStatus status) {
-    //         if (status == AnimationStatus.completed) {
-    //           setState(() {
-    //             activeIcon = icons[selectedTab];
-    //             activeBadge = badges[selectedTab];
-    //           });
-    //         }
-    //       });
+    _fadeFabOutAnimation =
+        Tween<double>(begin: 1, end: 0).animate(CurvedAnimation(parent: _fadeOutController, curve: Curves.easeOut))
+          ..addListener(() {
+            setState(() {
+              fabIconAlpha = _fadeFabOutAnimation.value;
+            });
+          })
+          ..addStatusListener((AnimationStatus status) {
+            if (status == AnimationStatus.completed) {
+              setState(() {
+                activeIcon = icons[selectedTab];
+
+                int selectedIndex = labels.indexWhere((element) => element == selectedTab);
+                activeBadge =
+                    (widget.badges != null && widget.badges!.length > 0) ? widget.badges![selectedIndex] : null;
+              });
+            }
+          });
 
     _fadeFabInAnimation = Tween<double>(begin: 0, end: 1)
         .animate(CurvedAnimation(parent: _animationController, curve: Interval(0.8, 1, curve: Curves.easeOut)))
-      ..addListener(() {
-        setState(() {
-          fabIconAlpha = _fadeFabInAnimation.value;
-        });
-      });
+          ..addListener(() {
+            setState(() {
+              fabIconAlpha = _fadeFabInAnimation.value;
+            });
+          });
   }
 
   @override
@@ -245,7 +248,7 @@ class _MotionTabBarState extends State<MotionTabBar> with TickerProviderStateMix
       int selectedIndex = labels.indexWhere((element) => element == tabLabel);
       Widget? badge = (widget.badges != null && widget.badges!.length > 0) ? widget.badges![selectedIndex] : null;
 
-      return TabItem(
+      return MotionTabItem(
         selected: selectedTab == tabLabel,
         iconData: icon,
         title: tabLabel,
@@ -256,7 +259,6 @@ class _MotionTabBarState extends State<MotionTabBar> with TickerProviderStateMix
         callbackFunction: () {
           setState(() {
             activeIcon = icon;
-            activeBadge = badge;
             selectedTab = tabLabel;
             widget.onTabItemSelected!(index);
           });

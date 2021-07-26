@@ -1,5 +1,9 @@
+## [0.2.2] - 26-July-2021
+
+* minor animation bug fix
+* use default tabController, removed MotionTabController/MotionTabView (outdated)
+
 ## [0.2.1] - 26-July-2021
-#### Updated by @[Kimman wky](https://github.com/kimmanwky "Kimman wky")
 
 
 * added badge support:
@@ -7,7 +11,6 @@
     * custom widget allowed
 
 ## [0.2.0] - 23-July-2021
-#### Updated by @[Kimman wky](https://github.com/kimmanwky "Kimman wky")
 
 
 * Update to support null-safety

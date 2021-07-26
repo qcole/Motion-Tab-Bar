@@ -8,7 +8,7 @@ const double ALPHA_OFF = 0;
 const double ALPHA_ON = 1;
 const int ANIM_DURATION = 300;
 
-class TabItem extends StatefulWidget {
+class MotionTabItem extends StatefulWidget {
   final String? title;
   final bool selected;
   final IconData? iconData;
@@ -18,7 +18,7 @@ class TabItem extends StatefulWidget {
   final double? tabIconSize;
   final Widget? badge;
 
-  TabItem({
+  MotionTabItem({
     required this.title,
     required this.selected,
     required this.iconData,
@@ -30,10 +30,10 @@ class TabItem extends StatefulWidget {
   });
 
   @override
-  _TabItemState createState() => _TabItemState();
+  _MotionTabItemState createState() => _MotionTabItemState();
 }
 
-class _TabItemState extends State<TabItem> {
+class _MotionTabItemState extends State<MotionTabItem> {
   double iconYAlign = ICON_ON;
   double textYAlign = TEXT_OFF;
   double iconAlpha = ALPHA_ON;
@@ -45,7 +45,7 @@ class _TabItemState extends State<TabItem> {
   }
 
   @override
-  void didUpdateWidget(TabItem oldWidget) {
+  void didUpdateWidget(MotionTabItem oldWidget) {
     super.didUpdateWidget(oldWidget);
     _setIconTextAlpha();
   }

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:motion_tab_bar_v2/MotionTabBarView.dart';
-import 'package:motion_tab_bar_v2/MotionTabController.dart';
-import 'package:motion_tab_bar_v2/motiontabbar.dart';
-import 'package:motion_tab_bar_v2/badge.widget.dart';
+import 'package:motion_tab_bar_v2/motion-tab-bar.dart';
+import 'package:motion_tab_bar_v2/motion-badge.widget.dart';
 
 void main() => runApp(const MyApp());
 
@@ -32,12 +30,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
-  MotionTabController? _tabController;
+  TabController? _tabController;
 
   @override
   void initState() {
     super.initState();
-    _tabController = MotionTabController(
+    _tabController = TabController(
       initialIndex: 1,
       length: 4,
       vsync: this,
@@ -115,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
           });
         },
       ),
-      body: MotionTabBarView(
+      body: TabBarView(
         controller: _tabController,
         // ignore: prefer_const_literals_to_create_immutables
         children: <Widget>[

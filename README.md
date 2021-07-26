@@ -4,10 +4,12 @@ A beautiful animated widget for your Flutter apps
 
 **Preview:**
 
-### v0.2.x Screenshot
-![0.2.1 Screenshot](https://github.com/kimmanwky/Motion-Tab-Bar/blob/master/screenshot2.png?raw=true)  
+### > v0.2.1 screenshot
 
-### v0.1.x Preview (animation)
+![0.2.x screenshot](https://github.com/kimmanwky/Motion-Tab-Bar/blob/master/screenshot2.png?raw=true)
+
+### v0.1.x animation preview
+
 ![MotionTabBar Gif](https://github.com/therezacuet/Motion-Tab-Bar/blob/master/motiontabbar.gif?raw=true)
 
 <br>
@@ -17,20 +19,30 @@ A beautiful animated widget for your Flutter apps
 Add the plugin:
 
 ```yaml
-dependencies:~
-  motion_tab_bar_v2: ^0.2.1
+dependencies:
+  motion_tab_bar_v2: ^0.2.2
 ```
 
 ## Basic Usage
 
-Adding the widget
+### Import package
 
 ```dart
-   MotionTabController _tabController;
+import 'package:motion_tab_bar_v2/motion-tab-bar.dart';
+
+// optional, only if using provider badge style
+import 'package:motion_tab_bar_v2/motion-badge.widget.dart';
+```
+
+### Use default TabController:
+
+```dart
+  TabController _tabController;
+
   @override
   void initState() {
     super.initState();
-    _tabController = new MotionTabController(initialIndex:1,vsync: this);
+    _tabController = new TabController(initialIndex:1,vsync: this);
   }
 
   @override
@@ -38,7 +50,11 @@ Adding the widget
     super.dispose();
     _tabController.dispose();
   }
+```
 
+### Add Motion Tab Bar to bottomNavigationbar:
+
+```dart
   bottomNavigationBar: MotionTabBar(
     initialSelectedTab: "Home",
     labels: const ["Dashboard", "Home", "Profile", "Settings"],
@@ -98,5 +114,4 @@ Adding the widget
       });
     },
   )
-
 ```
