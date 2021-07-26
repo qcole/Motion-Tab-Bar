@@ -6,9 +6,6 @@
     * default `MotionBadgeWidget` provided
     * custom widget allowed
 
-<br/>
-
-
 ## [0.2.0] - 23-July-2021
 #### Updated by @[Kimman wky](https://github.com/kimmanwky "Kimman wky")
 
@@ -21,8 +18,6 @@
     * tabIconSize (double)
     * tabIconSelectedSize (double)
     * tabIconSelectedColor (Colors)
-
-<br/>
 
 ## [0.1.5] - 07-07-2020.
 
