@@ -112,6 +112,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
         },
       ),
       body: TabBarView(
+        physics: NeverScrollableScrollPhysics(), // swipe navigation handling is not supported
         controller: _tabController,
         // ignore: prefer_const_literals_to_create_immutables
         children: <Widget>[

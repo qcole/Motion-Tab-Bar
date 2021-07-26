@@ -122,6 +122,7 @@ import 'package:motion_tab_bar_v2/motion-badge.widget.dart';
 
 ```dart
   body: TabBarView(
+    physics: NeverScrollableScrollPhysics(), // swipe navigation handling is not supported
     controller: _tabController,
     children: <Widget>[
       const Center(
