@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:motion_tab_bar/MotionTabBarView.dart';
-import 'package:motion_tab_bar/MotionTabController.dart';
-import 'package:motion_tab_bar/motiontabbar.dart';
-import 'package:motion_tab_bar/badge.widget.dart';
+import 'package:motion_tab_bar_v2/MotionTabBarView.dart';
+import 'package:motion_tab_bar_v2/MotionTabController.dart';
+import 'package:motion_tab_bar_v2/motiontabbar.dart';
+import 'package:motion_tab_bar_v2/badge.widget.dart';
 
 void main() => runApp(const MyApp());
 
