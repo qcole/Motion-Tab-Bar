@@ -30,7 +30,7 @@ dependencies:
 ```dart
 import 'package:motion_tab_bar_v2/motion-tab-bar.dart';
 
-// optional, only if using provider badge style
+// optional, only if using provided badge style
 import 'package:motion_tab_bar_v2/motion-badge.widget.dart';
 ```
 
