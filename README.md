@@ -10,7 +10,7 @@ A beautiful animated widget for your Flutter apps
 
 ### v0.1.x animation preview
 
-![MotionTabBar Gif](https://github.com/therezacuet/Motion-Tab-Bar/blob/master/motiontabbar.gif?raw=true)
+![MotionTabBar Gif](https://github.com/kimmanwky/Motion-Tab-Bar/blob/master/motiontabbar.gif?raw=true)
 
 <br>
 
@@ -42,7 +42,11 @@ import 'package:motion_tab_bar_v2/motion-badge.widget.dart';
   @override
   void initState() {
     super.initState();
-    _tabController = new TabController(initialIndex:1,vsync: this);
+    _tabController = TabController(
+      initialIndex: 1,
+      length: 4,
+      vsync: this,
+    );
   }
 
   @override
@@ -113,5 +117,27 @@ import 'package:motion_tab_bar_v2/motion-badge.widget.dart';
         _tabController!.index = value;
       });
     },
-  )
+  ),
+```
+
+### add TabBarView to Scaffold body
+
+```dart
+  body: TabBarView(
+    controller: _tabController,
+    children: <Widget>[
+      const Center(
+        child: Text("Dashboard"),
+      ),
+      const Center(
+        child: Text("Home"),
+      ),
+      const Center(
+        child: Text("Profile"),
+      ),
+      const Center(
+        child: Text("Settings"),
+      ),
+    ],
+  ),
 ```
