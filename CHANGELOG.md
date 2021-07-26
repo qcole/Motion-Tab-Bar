@@ -1,3 +1,7 @@
+## [0.2.3] - 26-July-2021
+
+* minor animation bug fix
+
 ## [0.2.2] - 26-July-2021
 
 * minor animation bug fix

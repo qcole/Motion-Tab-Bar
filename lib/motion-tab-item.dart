@@ -116,7 +116,7 @@ class _MotionTabItemState extends State<MotionTabItem> {
                             right: 0,
                             child: widget.badge!,
                           )
-                        : Container(),
+                        : SizedBox(),
                   ],
                 ),
               ),

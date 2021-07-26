@@ -20,7 +20,7 @@ Add the plugin:
 
 ```yaml
 dependencies:
-  motion_tab_bar_v2: ^0.2.2
+  motion_tab_bar_v2: ^0.2.3
 ```
 
 ## Basic Usage
@@ -111,8 +111,6 @@ import 'package:motion_tab_bar_v2/motion-badge.widget.dart';
     tabIconSelectedColor: Colors.white,
     tabBarColor: const Color(0xFFAFAFAF),
     onTabItemSelected: (int value) {
-      // ignore: avoid_print
-      print(value);
       setState(() {
         _tabController!.index = value;
       });

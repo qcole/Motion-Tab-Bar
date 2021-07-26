@@ -65,8 +65,6 @@ class _MotionTabBarState extends State<MotionTabBar> with TickerProviderStateMix
   IconData? activeIcon;
   String? selectedTab;
 
-  // badges
-  // late Map<String?, Widget> badges;
   List<Widget>? badges;
   Widget? activeBadge;
 
@@ -224,7 +222,7 @@ class _MotionTabBarState extends State<MotionTabBar> with TickerProviderStateMix
                                         right: 0,
                                         child: activeBadge!,
                                       )
-                                    : Container(),
+                                    : SizedBox(),
                               ],
                             ),
                           ),
