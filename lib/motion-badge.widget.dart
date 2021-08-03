@@ -9,11 +9,13 @@ class MotionBadgeWidget extends StatelessWidget {
     double? size,
     Color? color,
     bool? disabled,
+    bool? show,
   })  : this._isIndicator = isIndicator ?? false,
         this._color = color ?? Colors.red,
         this._textColor = textColor ?? Colors.white,
         this._size = size ?? (isIndicator == true ? 5 : 18),
         this._disabled = disabled ?? false,
+        this._show = show != null ? show : true,
         assert(text != null ? text.length <= 3 : true),
         super(key: key);
 
@@ -23,10 +25,11 @@ class MotionBadgeWidget extends StatelessWidget {
   final Color? _textColor;
   final double? _size;
   final bool? _disabled;
+  final bool? _show;
 
   @override
   Widget build(BuildContext context) {
-    return _isIndicator == true
+    return _show == true && _isIndicator == true
         ? Container(
             alignment: Alignment.center,
             padding: EdgeInsets.all(3),
@@ -40,7 +43,7 @@ class MotionBadgeWidget extends StatelessWidget {
               minHeight: _size!,
             ),
           )
-        : text != null && text != ''
+        : _show == true && text != null && text != ''
             ? Container(
                 alignment: Alignment.center,
                 padding: EdgeInsets.all(3),

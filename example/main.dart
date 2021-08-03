@@ -90,6 +90,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
             isIndicator: true,
             color: Colors.red, // optional, default to Colors.red
             size: 5, // optional, default to 5,
+            show: true, // true / false
           ),
         ],
         tabSize: 50,
