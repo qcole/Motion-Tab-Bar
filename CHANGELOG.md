@@ -1,3 +1,7 @@
+## [0.2.4] - 3-August-2021
+
+* MotionBadgeWidget add 'show'(boolean) parameters
+
 ## [0.2.3] - 26-July-2021
 
 * minor animation bug fix
