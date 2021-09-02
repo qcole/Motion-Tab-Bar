@@ -1,6 +1,11 @@
 # Motion Tab Bar v2, with null-safety support
 
-A beautiful animated widget for your Flutter apps
+[![likes](https://badges.bar/motion_tab_bar_v2/likes)](https://pub.dev/packages/motion_tab_bar_v2/score)
+[![popularity](https://badges.bar/motion_tab_bar_v2/popularity)](https://pub.dev/packages/motion_tab_bar_v2/score)
+[![pub points](https://badges.bar/motion_tab_bar_v2/pub%20points)](https://pub.dev/packages/motion_tab_bar_v2/score)
+
+A beautiful animated widget for your Flutter Tab Bar.
+
 
 **Preview:**
 
