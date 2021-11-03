@@ -56,6 +56,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
       ),
       bottomNavigationBar: MotionTabBar(
         initialSelectedTab: "Home",
+        useSafeArea: true, // default: true, apply safe area wrapper
         labels: const ["Dashboard", "Home", "Profile", "Settings"],
         icons: const [Icons.dashboard, Icons.home, Icons.people_alt, Icons.settings],
 

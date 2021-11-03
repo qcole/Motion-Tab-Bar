@@ -15,6 +15,7 @@ class MotionTabBar extends StatefulWidget {
 
   final List<String?> labels;
   final List<IconData>? icons;
+  final bool useSafeArea;
 
   // badge
   final List<Widget?>? badges;
@@ -33,6 +34,7 @@ class MotionTabBar extends StatefulWidget {
     required this.initialSelectedTab,
     required this.labels,
     this.icons,
+    this.useSafeArea = true,
     this.badges,
   })  : assert(labels.contains(initialSelectedTab)),
         assert(icons != null && icons.length == labels.length),
@@ -103,139 +105,145 @@ class _MotionTabBarState extends State<MotionTabBar> with TickerProviderStateMix
         setState(() {});
       });
 
-    _fadeFabOutAnimation =
-        Tween<double>(begin: 1, end: 0).animate(CurvedAnimation(parent: _fadeOutController, curve: Curves.easeOut))
-          ..addListener(() {
-            setState(() {
-              fabIconAlpha = _fadeFabOutAnimation.value;
-            });
-          })
-          ..addStatusListener((AnimationStatus status) {
-            if (status == AnimationStatus.completed) {
-              setState(() {
-                activeIcon = icons[selectedTab];
+    _fadeFabOutAnimation = Tween<double>(begin: 1, end: 0)
+        .animate(CurvedAnimation(parent: _fadeOutController, curve: Curves.easeOut))
+      ..addListener(() {
+        setState(() {
+          fabIconAlpha = _fadeFabOutAnimation.value;
+        });
+      })
+      ..addStatusListener((AnimationStatus status) {
+        if (status == AnimationStatus.completed) {
+          setState(() {
+            activeIcon = icons[selectedTab];
 
-                int selectedIndex = labels.indexWhere((element) => element == selectedTab);
-                activeBadge =
-                    (widget.badges != null && widget.badges!.length > 0) ? widget.badges![selectedIndex] : null;
-              });
-            }
+            int selectedIndex = labels.indexWhere((element) => element == selectedTab);
+            activeBadge = (widget.badges != null && widget.badges!.length > 0) ? widget.badges![selectedIndex] : null;
           });
+        }
+      });
 
     _fadeFabInAnimation = Tween<double>(begin: 0, end: 1)
         .animate(CurvedAnimation(parent: _animationController, curve: Interval(0.8, 1, curve: Curves.easeOut)))
-          ..addListener(() {
-            setState(() {
-              fabIconAlpha = _fadeFabInAnimation.value;
-            });
-          });
+      ..addListener(() {
+        setState(() {
+          fabIconAlpha = _fadeFabInAnimation.value;
+        });
+      });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.topCenter,
-      children: <Widget>[
-        Container(
-          height: widget.tabBarHeight,
-          //margin: EdgeInsets.only(top: 45),
-          decoration: BoxDecoration(
-            color: widget.tabBarColor,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black12,
-                offset: Offset(0, -1),
-                blurRadius: 5,
+    return Container(
+      decoration: BoxDecoration(
+        color: widget.tabBarColor,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black12,
+            offset: Offset(0, -1),
+            blurRadius: 5,
+          ),
+        ],
+      ),
+      child: SafeArea(
+        bottom: widget.useSafeArea,
+        child: Stack(
+          alignment: Alignment.topCenter,
+          children: <Widget>[
+            Container(
+              height: widget.tabBarHeight,
+              decoration: BoxDecoration(
+                color: widget.tabBarColor,
               ),
-            ],
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: generateTabItems(),
-          ),
-        ),
-        IgnorePointer(
-          child: Container(
-            decoration: BoxDecoration(color: Colors.transparent),
-            child: Align(
-              heightFactor: 0,
-              alignment: Alignment(_positionAnimation.value, 0),
-              child: FractionallySizedBox(
-                widthFactor: 1 / tabAmount,
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: <Widget>[
-                    SizedBox(
-                      height: widget.tabSize! + 30,
-                      width: widget.tabSize! + 30,
-                      child: ClipRect(
-                        clipper: HalfClipper(),
-                        child: Container(
-                          child: Center(
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: generateTabItems(),
+              ),
+            ),
+            IgnorePointer(
+              child: Container(
+                decoration: BoxDecoration(color: Colors.transparent),
+                child: Align(
+                  heightFactor: 0,
+                  alignment: Alignment(_positionAnimation.value, 0),
+                  child: FractionallySizedBox(
+                    widthFactor: 1 / tabAmount,
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: <Widget>[
+                        SizedBox(
+                          height: widget.tabSize! + 30,
+                          width: widget.tabSize! + 30,
+                          child: ClipRect(
+                            clipper: HalfClipper(),
                             child: Container(
-                              width: widget.tabSize! + 10,
-                              height: widget.tabSize! + 10,
-                              decoration: BoxDecoration(
-                                color: widget.tabBarColor,
-                                shape: BoxShape.circle,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black12,
-                                    blurRadius: 8,
-                                  )
-                                ],
+                              child: Center(
+                                child: Container(
+                                  width: widget.tabSize! + 10,
+                                  height: widget.tabSize! + 10,
+                                  decoration: BoxDecoration(
+                                    color: widget.tabBarColor,
+                                    shape: BoxShape.circle,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black12,
+                                        blurRadius: 8,
+                                      )
+                                    ],
+                                  ),
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: widget.tabSize! + 15,
-                      width: widget.tabSize! + 35,
-                      child: CustomPaint(painter: HalfPainter(color: widget.tabBarColor)),
-                    ),
-                    SizedBox(
-                      height: widget.tabSize,
-                      width: widget.tabSize,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: widget.tabSelectedColor,
+                        SizedBox(
+                          height: widget.tabSize! + 15,
+                          width: widget.tabSize! + 35,
+                          child: CustomPaint(painter: HalfPainter(color: widget.tabBarColor)),
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(0.0),
-                          child: Opacity(
-                            opacity: fabIconAlpha,
-                            child: Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                Icon(
-                                  activeIcon,
-                                  color: widget.tabIconSelectedColor,
-                                  size: widget.tabIconSelectedSize,
+                        SizedBox(
+                          height: widget.tabSize,
+                          width: widget.tabSize,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: widget.tabSelectedColor,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(0.0),
+                              child: Opacity(
+                                opacity: fabIconAlpha,
+                                child: Stack(
+                                  alignment: Alignment.center,
+                                  children: [
+                                    Icon(
+                                      activeIcon,
+                                      color: widget.tabIconSelectedColor,
+                                      size: widget.tabIconSelectedSize,
+                                    ),
+                                    activeBadge != null
+                                        ? Positioned(
+                                            top: 0,
+                                            right: 0,
+                                            child: activeBadge!,
+                                          )
+                                        : SizedBox(),
+                                  ],
                                 ),
-                                activeBadge != null
-                                    ? Positioned(
-                                        top: 0,
-                                        right: 0,
-                                        child: activeBadge!,
-                                      )
-                                    : SizedBox(),
-                              ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ),
             ),
-          ),
+          ],
         ),
-      ],
+      ),
     );
   }
 

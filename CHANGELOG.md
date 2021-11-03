@@ -1,3 +1,7 @@
+## [0.2.5] - 3-November-2021
+* MotionTabBar add "useSafeArea" parameters. Default: true
+* Enlarge tab items press-able area
+
 ## [0.2.4] - 3-August-2021
 
 * MotionBadgeWidget add 'show'(boolean) parameters

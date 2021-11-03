@@ -83,41 +83,42 @@ class _MotionTabItemState extends State<MotionTabItem> {
               ),
             ),
           ),
-          Container(
-            height: double.infinity,
-            width: double.infinity,
-            child: AnimatedAlign(
-              duration: Duration(milliseconds: ANIM_DURATION),
-              curve: Curves.easeIn,
-              alignment: Alignment(0, iconYAlign),
-              child: AnimatedOpacity(
+          InkWell(
+            onTap: () => widget.callbackFunction(),
+            child: Container(
+              height: double.infinity,
+              width: double.infinity,
+              child: AnimatedAlign(
                 duration: Duration(milliseconds: ANIM_DURATION),
-                opacity: iconAlpha,
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    IconButton(
-                      highlightColor: Colors.transparent,
-                      splashColor: Colors.transparent,
-                      padding: EdgeInsets.all(0),
-                      alignment: Alignment(0, 0),
-                      icon: Icon(
-                        widget.iconData,
-                        color: widget.tabIconColor,
-                        size: widget.tabIconSize,
+                curve: Curves.easeIn,
+                alignment: Alignment(0, iconYAlign),
+                child: AnimatedOpacity(
+                  duration: Duration(milliseconds: ANIM_DURATION),
+                  opacity: iconAlpha,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      IconButton(
+                        highlightColor: Colors.transparent,
+                        splashColor: Colors.transparent,
+                        padding: EdgeInsets.all(0),
+                        alignment: Alignment(0, 0),
+                        icon: Icon(
+                          widget.iconData,
+                          color: widget.tabIconColor,
+                          size: widget.tabIconSize,
+                        ),
+                        onPressed: () => widget.callbackFunction(),
                       ),
-                      onPressed: () {
-                        widget.callbackFunction();
-                      },
-                    ),
-                    widget.badge != null
-                        ? Positioned(
-                            top: 0,
-                            right: 0,
-                            child: widget.badge!,
-                          )
-                        : SizedBox(),
-                  ],
+                      widget.badge != null
+                          ? Positioned(
+                              top: 0,
+                              right: 0,
+                              child: widget.badge!,
+                            )
+                          : SizedBox(),
+                    ],
+                  ),
                 ),
               ),
             ),
