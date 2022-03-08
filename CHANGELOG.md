@@ -1,3 +1,6 @@
+## [0.2.6] - 8-March-2022
+* change "title" - softwarp: false, maxLines: 1
+
 ## [0.2.5] - 3-November-2021
 * MotionTabBar add "useSafeArea" parameters. Default: true
 * Enlarge tab items press-able area

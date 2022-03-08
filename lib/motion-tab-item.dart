@@ -77,6 +77,8 @@ class _MotionTabItemState extends State<MotionTabItem> {
                     ? Text(
                         widget.title!,
                         style: widget.textStyle,
+                        softWrap: false,
+                        maxLines: 1,
                         textAlign: TextAlign.center,
                       )
                     : Text(''),
