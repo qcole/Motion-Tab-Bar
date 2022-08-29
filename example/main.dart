@@ -58,12 +58,17 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
         initialSelectedTab: "Home",
         useSafeArea: true, // default: true, apply safe area wrapper
         labels: const ["Dashboard", "Home", "Profile", "Settings"],
-        icons: const [Icons.dashboard, Icons.home, Icons.people_alt, Icons.settings],
+        icons: const [
+          Icons.dashboard,
+          Icons.home,
+          Icons.people_alt,
+          Icons.settings
+        ],
 
         // optional badges, length must be same with labels
         badges: [
           // Default Motion Badge Widget
-          const MotionBadgeWidget(
+          MotionBadgeWidget(
             text: '99+',
             textColor: Colors.white, // optional, default to Colors.white
             color: Colors.red, // optional, default to Colors.red
@@ -87,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
           null,
 
           // Default Motion Badge Widget with indicator only
-          const MotionBadgeWidget(
+          MotionBadgeWidget(
             isIndicator: true,
             color: Colors.red, // optional, default to Colors.red
             size: 5, // optional, default to 5,
@@ -114,7 +119,8 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
         },
       ),
       body: TabBarView(
-        physics: NeverScrollableScrollPhysics(), // swipe navigation handling is not supported
+        physics:
+            NeverScrollableScrollPhysics(), // swipe navigation handling is not supported
         controller: _tabController,
         // ignore: prefer_const_literals_to_create_immutables
         children: <Widget>[

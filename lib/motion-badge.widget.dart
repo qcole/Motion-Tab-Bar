@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MotionBadgeWidget extends StatelessWidget {
-  const MotionBadgeWidget({
+  MotionBadgeWidget({
     Key? key,
     bool? isIndicator,
     this.text,
